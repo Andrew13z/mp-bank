@@ -13,5 +13,9 @@ public interface Service {
 
 	Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber);
 
+	List<Subscription> getAllSubscriptions();
+
 	List<User> getAllUsers();
+
+	void addUser(User user);
 }

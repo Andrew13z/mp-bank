@@ -28,4 +28,12 @@ public class Subscription {
 	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Subscription{" +
+				"bankCard='" + bankCard + '\'' +
+				", startDate=" + startDate +
+				'}';
+	}
 }

@@ -33,4 +33,13 @@ public class User {
 	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", birthday=" + birthday +
+				'}';
+	}
 }

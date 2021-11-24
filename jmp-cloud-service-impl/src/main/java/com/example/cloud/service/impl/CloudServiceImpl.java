@@ -38,7 +38,18 @@ public class CloudServiceImpl implements Service {
 	}
 
 	@Override
+	public List<Subscription> getAllSubscriptions() {
+		return subscriptionDao.getAllSubscriptions();
+	}
+
+	@Override
 	public List<User> getAllUsers() {
 		return userDao.getAllUsers();
+	}
+
+	@Override
+	public void addUser(User user) {
+		userDao.addUser(user);
+
 	}
 }
