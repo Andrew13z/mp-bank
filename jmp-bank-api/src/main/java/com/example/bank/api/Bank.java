@@ -1,4 +1,4 @@
-package com.example.bank.api.service;
+package com.example.bank.api;
 
 import com.example.dto.BankCard;
 import com.example.dto.BankCardType;
