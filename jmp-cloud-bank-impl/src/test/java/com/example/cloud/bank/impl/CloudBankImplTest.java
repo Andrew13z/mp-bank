@@ -1,7 +1,6 @@
 package com.example.cloud.bank.impl;
 
 import com.example.bank.api.Bank;
-import com.example.dto.BankCard;
 import com.example.dto.BankCardType;
 import com.example.dto.CreditBankCard;
 import com.example.dto.DebitBankCard;
@@ -23,7 +22,7 @@ public class CloudBankImplTest {
 
 	@Test
 	public void testCreateBankCard_withDebitCardType() {
-		BankCard card = bank.createBankCard(createUser(), BankCardType.DEBIT);
+		var card = bank.createBankCard(createUser(), BankCardType.DEBIT);
 
 		assertEquals(DebitBankCard.class, card.getClass());
 		assertEquals(USER_NAME, card.getUser().getName());
@@ -32,7 +31,7 @@ public class CloudBankImplTest {
 
 	@Test
 	public void testCreateBankCard_withCreditCardType() {
-		BankCard card = bank.createBankCard(createUser(), BankCardType.CREDIT);
+		var card = bank.createBankCard(createUser(), BankCardType.CREDIT);
 
 		assertEquals(CreditBankCard.class, card.getClass());
 		assertEquals(USER_NAME, card.getUser().getName());
@@ -41,11 +40,11 @@ public class CloudBankImplTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateBankCard_withInvalidCardType() {
-		BankCard card = bank.createBankCard(createUser(), null);
+		var card = bank.createBankCard(createUser(), null);
 	}
 
 	private User createUser() {
-		User user = new User();
+		var user = new User();
 		user.setName(USER_NAME);
 		user.setSurname(USER_SURNAME);
 		user.setBirthday(USER_BIRTHDAY);

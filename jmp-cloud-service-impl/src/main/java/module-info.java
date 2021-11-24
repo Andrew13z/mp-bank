@@ -4,7 +4,8 @@ module jmp.cloud.service.impl {
 
 	requires transitive jmp.service.api;
 	requires jmp.dto;
-	requires lombok;
 
 	exports com.example.cloud.service.impl;
+
+	provides com.example.service.api.Service with com.example.cloud.service.impl.CloudServiceImpl;
 }

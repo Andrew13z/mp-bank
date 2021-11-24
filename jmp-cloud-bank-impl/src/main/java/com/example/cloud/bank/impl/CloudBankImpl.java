@@ -32,7 +32,7 @@ public class CloudBankImpl implements Bank {
 	}
 
 	private String generateCardNumber() {
-		StringBuilder cardNumber = new StringBuilder();
+		var cardNumber = new StringBuilder();
 		for (int i = 0; i < 16; i++) {
 			cardNumber.append(ThreadLocalRandom.current().nextInt(10));
 		}
