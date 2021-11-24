@@ -19,7 +19,7 @@ public class CloudBankImplTest {
 	private static final LocalDate USER_BIRTHDAY = LocalDate.now();
 	public static final int CARD_NUMBER_LENGTH = 16;
 
-	private Bank bank = new CloudBankImpl();//todo
+	private final Bank bank = new CloudBankImpl();//TODO
 
 	@Test
 	public void testCreateBankCard_withDebitCardType() {
