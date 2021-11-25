@@ -12,6 +12,8 @@ import com.example.service.api.exception.EntityNotFoundException;
 
 import java.util.List;
 import java.util.ServiceLoader;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class CloudServiceImpl implements Service {
 
@@ -53,4 +55,13 @@ public class CloudServiceImpl implements Service {
 		userDao.addUser(user);
 
 	}
+
+	@Override
+	public List<Subscription> getAllSubscriptionsByCondition(Predicate<Subscription> condition) {
+		return subscriptionDao.getAllSubscriptions()
+				.stream()
+				.filter(condition::test)
+				.collect(Collectors.toUnmodifiableList());
+	}
+
 }

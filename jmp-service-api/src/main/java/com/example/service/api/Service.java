@@ -8,6 +8,7 @@ import com.example.service.api.exception.EntityNotFoundException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.function.Predicate;
 
 public interface Service {
 
@@ -21,6 +22,8 @@ public interface Service {
 
 	void addUser(User user);
 
+	List<Subscription> getAllSubscriptionsByCondition(Predicate<Subscription> condition);
+
 	default double getAverageUserAge() {
 		return getAllUsers().stream()
 				.mapToLong(Service::getAge)
@@ -28,7 +31,7 @@ public interface Service {
 				.orElse(0);
 	}
 
-	static boolean isPayableUser(User user){
+	static boolean isPayableUser(User user) {
 		return Double.compare(getAge(user), 18) >= 0;
 	}
 
