@@ -1,8 +1,7 @@
 package com.example.application;
 
 import com.example.dto.Subscription;
-
-import java.util.Optional;
+import com.example.service.api.exception.EntityNotFoundException;
 
 import static com.example.application.Util.generateData;
 import static com.example.application.Util.initServices;
@@ -24,15 +23,16 @@ public class Main {
 		log.info(service.getAllSubscriptions().toString());
 
 		var existingCardNumber = bankCardList.get(0).getNumber();
-		Optional<Subscription> subscriptionByExistingNumber = service.getSubscriptionByBankCardNumber(
-				existingCardNumber);
-		log.info("Card found by card number " + existingCardNumber + ": " + subscriptionByExistingNumber.get());
+		Subscription subscriptionByExistingNumber = service.getSubscriptionByBankCardNumber(existingCardNumber);
+		log.info("Card found by card number " + existingCardNumber + ": " + subscriptionByExistingNumber);
 
 		var nonExistingCardNumber = "1";
-		Optional<Subscription> subscriptionByNonExistingNumber = service.getSubscriptionByBankCardNumber(
-				nonExistingCardNumber);
-		log.info("Card not found by nonexistent card number " + nonExistingCardNumber + ": "
-				+ subscriptionByNonExistingNumber.isEmpty());
+		try {
+			service.getSubscriptionByBankCardNumber(nonExistingCardNumber);
+		} catch (EntityNotFoundException e) {
+			log.info("Card not found by nonexistent card number " + nonExistingCardNumber);
+		}
+
 	}
 
 }

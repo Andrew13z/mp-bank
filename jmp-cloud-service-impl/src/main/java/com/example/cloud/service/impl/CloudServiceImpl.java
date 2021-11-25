@@ -8,9 +8,9 @@ import com.example.dto.BankCard;
 import com.example.dto.Subscription;
 import com.example.dto.User;
 import com.example.service.api.Service;
+import com.example.service.api.exception.EntityNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.ServiceLoader;
 
 public class CloudServiceImpl implements Service {
@@ -33,8 +33,9 @@ public class CloudServiceImpl implements Service {
 	}
 
 	@Override
-	public Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber) {
-		return subscriptionDao.getSubscriptionByBankCardNumber(cardNumber);
+	public Subscription getSubscriptionByBankCardNumber(String cardNumber) {
+		return subscriptionDao.getSubscriptionByBankCardNumber(cardNumber)
+				.orElseThrow(() -> new EntityNotFoundException("Card not found by number: " + cardNumber));
 	}
 
 	@Override

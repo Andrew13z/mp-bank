@@ -3,17 +3,17 @@ package com.example.service.api;
 import com.example.dto.BankCard;
 import com.example.dto.Subscription;
 import com.example.dto.User;
+import com.example.service.api.exception.EntityNotFoundException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Optional;
 
 public interface Service {
 
 	void subscribe(BankCard card);
 
-	Optional<Subscription> getSubscriptionByBankCardNumber(String cardNumber);
+	Subscription getSubscriptionByBankCardNumber(String cardNumber) throws EntityNotFoundException;
 
 	List<Subscription> getAllSubscriptions();
 
