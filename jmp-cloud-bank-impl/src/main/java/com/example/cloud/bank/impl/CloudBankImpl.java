@@ -9,26 +9,28 @@ import com.example.dto.User;
 
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Supplier;
 
 public class CloudBankImpl implements Bank {
 
 	@Override
 	public BankCard createBankCard(User user, BankCardType cardType) {
-		BankCard card = createEmptyBankCardFotType(cardType)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid card type provided."));
+		BankCard card = getBankCardSupplier(cardType).get();
 		card.setNumber(generateCardNumber());
 		card.setUser(user);
 		return card;
 	}
 
-	private Optional<BankCard> createEmptyBankCardFotType(BankCardType cardType) {
-		BankCard card = null;
+	private Supplier<BankCard> getBankCardSupplier(BankCardType cardType) {
+		Supplier<BankCard> supplier;
 		if (BankCardType.DEBIT.equals(cardType)) {
-			card = new DebitBankCard();
-		} else if (BankCardType.CREDIT.equals(cardType)) {
-			card = new CreditBankCard();
+			supplier = (DebitBankCard::new);
+		} else if (BankCardType.CREDIT.equals(cardType)){
+			supplier = (CreditBankCard::new);
+		} else {
+			throw new IllegalArgumentException("Invalid card type provided.");
 		}
-		return Optional.ofNullable(card);
+		return supplier;
 	}
 
 	private String generateCardNumber() {

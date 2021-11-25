@@ -53,7 +53,6 @@ public class Main {
 
 		var subscriptionsOlderThanOneMonth = service.getAllSubscriptionsByCondition(olderThanOneMonth);
 		log.info("Subscriptions created more than 1 month ago: " + subscriptionsOlderThanOneMonth.toString());
-
 	}
 
 }
